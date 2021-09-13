@@ -9,30 +9,108 @@ import java.util.Scanner;
 
 public class BAC
 {
-    private final int choice;
-    private final int ounces;
-    private final int weight;
-    private final int hoursPast;
+    private int choice;
+    private  int ounces;
+    private  int weight;
+    private  int hoursPast;
 
     public BAC()
     {
         Scanner input =  new Scanner(System.in);
+        boolean flag = false;
 
-        //asks user for their sex
-        System.out.print("Enter 1 if you are a male or a 2 if you are a female: ");
-        this.choice = input.nextInt();
+        //question will be asked as long as the flag has not been raised
+        while(!flag)
+        {
+            //asks user for their sex
+            System.out.print("Enter 1 if you are a male or a 2 if you are a female: ");
 
-        //asks for the amount of alcohol they had in ounces
-        System.out.print("How many ounces of alcohol did you have? ");
-        this.ounces = input.nextInt();
+            //if user inputs a numeric value...
+            if(input.hasNextInt())
+            {
+                this.choice = input.nextInt();
 
+                //if it is a value inputted is appropriate
+                if(this.choice == 1 || this.choice == 2)
+                {
+                    //input is valid, raise the flag
+                    flag = true;
+                }
+
+                //if it's not one or 2
+                else
+                {
+                    //prompt user to enter input again
+                    System.out.print("Not a valid input. Please try again!\n");
+                }
+
+            }
+
+            //if user inputs a non-numeric value
+            else
+            {
+                System.out.print("Not a valid input. Please try again!\n");
+            }
+
+            input.nextLine();
+        }
+
+
+        //reset flag for the next question
+        flag = false;
+        while(!flag)
+        {
+            //asks for the amount of alcohol they had in ounces
+            System.out.print("How many ounces of alcohol did you have? ");
+            if(input.hasNextInt())
+            {
+                this.ounces = input.nextInt();
+                flag = true;
+            }
+            else
+            {
+                System.out.print("Not a valid input. Please try again!\n");
+            }
+
+            input.nextLine();
+        }
         //asks user for their weight in pounds
-        System.out.print("What is your weight, in pounds? ");
-        this.weight = input.nextInt();
+        flag = false;
+        while(!flag)
+        {
+            System.out.print("What is your weight, in pounds? ");
+            if(input.hasNextInt())
+            {
+                this.weight = input.nextInt();
+                flag = true;
+            }
+            else
+            {
+                System.out.print("Not a valid input. Please try again!\n");
+            }
 
-        //asks for how many hours its been since they had their last drink
-        System.out.print("How many hours has it been since your last drink? ");
-        this.hoursPast = input.nextInt();
+            input.nextLine();
+        }
+
+        flag = false;
+        while(!flag)
+        {
+            //asks for how many hours it's been since they had their last drink
+            System.out.print("How many hours has it been since your last drink? ");
+            if(input.hasNextInt())
+            {
+                this.hoursPast = input.nextInt();
+                flag = true;
+            }
+
+            else
+            {
+                System.out.print("Not a valid input. Please try again!\n");
+            }
+
+            input.nextLine();
+        }
+
     }
 
     public void Sobriety()
